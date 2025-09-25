@@ -1,3 +1,49 @@
+/* Estilo global da página */
 body {
-    background-color: #81abf9;
+  background-color: #ffffff; /* fundo branco */
+  margin: 0; /* remove margens padrão */
+  font-family: Arial, sans-serif;
+}
+
+/* Cabeçalho (verde) */
+header {
+  background-color: #4caf50; /* verde */
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Barra de navegação (preta) */
+nav {
+  background-color: #333; /* preto/cinza escuro */
+  padding: 10px;
+  text-align: center;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* Conteúdo principal (Home) */
+main {
+  background-color: white;
+  margin: 20px auto;  /* espaçamento entre main, imagens e footer */
+  padding: 20px;      /* espaço interno */
+  width: 80%;         /* largura do bloco */
+  border-radius: 6px; /* cantos arredondados */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15); /* sombra leve */
+}
+
+/* Rodapé (preto) */
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 15px;
 }
