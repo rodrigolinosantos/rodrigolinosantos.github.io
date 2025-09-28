@@ -1,46 +1,259 @@
-/* Estilo global da página */
-body {
-  background-color: #000000; /* fundo branco */
-  margin: 0; /* remove margens padrão */
+/* Reset e comportamento global */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-family: Arial, sans-serif;
+  scroll-behavior: smooth; /* Scroll suave */
 }
 
-/* Cabeçalho (verde) */
+/* Cabeçalho fixo */
 header {
-  background-color: #811eae; /* verde */
-  color: rgb(255, 255, 255);
+  background-color: #811eae;
+  color: white;
   text-align: center;
   padding: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
-/* Barra de navegação (preta) */
-nav {
-  background-color: #333; /* preto/cinza escuro */
-  padding: 10px;
+/* 🌄 HERO SECTION */
+.hero {
+  position: relative;
+  height: 100vh;
+  background-image: url('images/hero.jpg'); /* Substitui por tua imagem */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+}
+
+/* Menu dentro da hero */
+.menu {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+}
+
+.menu ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 8px 15px;
+  border-radius: 20px;
+  transition: background 0.3s;
+}
+
+.menu a:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Conteúdo central */
+.hero-content {
+  text-align: center;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 30px;
+  border-radius: 12px;
+}
+
+.hero-content h2 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.hero-content p {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+/* Botão call-to-action */
+.cta-btn {
+  display: inline-block;
+  background-color: #ff9800;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.cta-btn:hover {
+  background-color: #e68900;
+}
+
+/* 🧠 Projetos */
+/* 🧠 Projetos */
+.projetos {
+  height: 100vh;
+  background: linear-gradient(to bottom right, #ffd1b3, #ffbfa3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 60px;
+  text-align: center;
+  color: #333;
+}
+
+.projetos h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.projetos p {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 40px;
+}
+
+/* Container dos cards */
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+/* Cada card individual */
+.card {
+  background-color: #ffb6c1;
+  border-radius: 12px;
+  padding: 20px 30px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  width: 220px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  text-align: left;
+}
+
+.card h3 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.card p {
+  margin-bottom: 15px;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+/* Botão/link dentro do card */
+.card a {
+  display: inline-block;
+  background-color: #811eae;
+  color: white;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+}
+
+.card a:hover {
+  background-color: #5a137e;
+}
+
+/* Efeito hover do card */
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .card {
+    width: 90%;
+  }
+}
+
+/* 📘 Disciplina */
+/* 📘 Secção Disciplina */
+.disciplina {
+  height: 100vh;
+  background-color: #009688;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
   text-align: center;
 }
 
-nav a {
-  color: white;
-  text-decoration: none;
-  margin: 0 15px;
+.disciplina h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
 }
 
-nav a:hover {
-  text-decoration: underline;
+/* Container com texto + imagem */
+.disciplina-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  max-width: 1000px;
 }
 
-/* Conteúdo principal (Home) */
-main {
-  background-color: rgb(199, 87, 201);
-  margin: 20px auto;  /* espaçamento entre main, imagens e footer */
-  padding: 20px;      /* espaço interno */
-  width: 80%;         /* largura do bloco */
-  border-radius: 6px; /* cantos arredondados */
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15); /* sombra leve */
+/* Texto */
+.disciplina .texto {
+  flex: 1;
+  text-align: left;
 }
 
-/* Rodapé (preto) */
+.disciplina .texto p {
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.disciplina ul {
+  list-style-type: disc;
+  margin-left: 20px;
+  margin-bottom: 15px;
+}
+
+/* Imagem */
+.disciplina .imagem {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.disciplina .imagem img {
+  width: 100%;
+  max-width: 350px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .disciplina-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .disciplina .texto {
+    text-align: center;
+  }
+
+  .disciplina .imagem img {
+    max-width: 80%;
+  }
+}
+
+
+/* Rodapé */
 footer {
   background-color: #333;
   color: white;
