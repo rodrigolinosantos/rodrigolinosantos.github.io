@@ -17,7 +17,50 @@
             width: 150px;
             border-radius: 20px;
         }
-    
+        <style>
+    section {
+      width: 60%;
+      margin: 40px auto;
+      padding: 20px;
+      background: #f8f8f8;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      font-family: 'Georgia', serif;
+    }
+
+    h3 {
+      text-align: center;
+      font-size: 1.8em;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    div p {
+      text-align: center;
+      font-size: 1.1em;
+      margin: 8px 0;
+    }
+
+    /* Estilização com nth-child */
+    div p:nth-child(odd) {
+      color: #c62828; /* vermelho profundo */
+      font-weight: bold;
+    }
+
+    div p:nth-child(even) {
+      color: #1565c0; /* azul forte */
+      font-style: italic;
+    }
+
+    div p:nth-child(1) {
+      font-size: 1.3em;
+    }
+
+    div p:last-child {
+      color: #2e7d32; /* verde */
+      text-decoration: underline;
+    }
+  </style>
     </style>
 </head>
 

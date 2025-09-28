@@ -1,6 +1,6 @@
 /* Estilo global da página */
 body {
-  background-color: #000000; /* fundo branco */
+  background-color: #0c0707; /* fundo branco */
   margin: 0; /* remove margens padrão */
   font-family: Arial, sans-serif;
 }
@@ -8,7 +8,7 @@ body {
 /* Cabeçalho (verde) */
 header {
   background-color: #811eae; /* verde */
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   text-align: center;
   padding: 20px;
 }
@@ -21,7 +21,7 @@ nav {
 }
 
 nav a {
-  color: white;
+  color: rgb(254, 254, 254);
   text-decoration: none;
   margin: 0 15px;
 }
