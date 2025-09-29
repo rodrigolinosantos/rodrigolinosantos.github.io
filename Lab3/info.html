@@ -6,39 +6,102 @@
     <title>Informação</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        table {
-            width: 60%;
-            border-collapse: collapse;
-            margin: 30px auto;
-            font-family: Arial, sans-serif;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-        }
+  main {
+    padding: 40px 30px;
+    margin: 40px auto;
+    width: 85%;
+    max-width: 900px;
+    background-color: #0f0f1a;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 0, 170, 0.15);
+  }
 
-        th,
-        td {
-            border: 1px solid #333;
-            padding: 10px;
-            text-align: center;
-        }
+  h2 {
+    color: #00ccff;
+    margin-bottom: 15px;
+    text-align: center;
+  }
 
-        th {
-            background-color: #090505;
-            color: #f6f0f7;
-            /* vermelho para cabeçalhos */
-        }
+  p {
+    text-align: center;
+    margin-bottom: 30px;
+    line-height: 1.6;
+    color: #e6e6e6;
+  }
 
-        td {
-            color: #07080a;
-            /* azul para os dados */
-        }
+  table {
+    width: 80%;
+    border-collapse: collapse;
+    margin: 0 auto 40px auto; /* espaçamento inferior */
+    font-family: Arial, sans-serif;
+    box-shadow: 0 0 20px rgba(255, 0, 170, 0.2);
+    background-color: #141424;
+    border-radius: 10px;
+    overflow: hidden;
+  }
 
-        caption {
-            font-size: 1.4em;
-            margin-bottom: 10px;
-            font-weight: bold;
-            color: #09140a;
-        }
-    </style>
+  caption {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #ff00aa;
+    text-shadow: 0 0 8px rgba(255, 0, 170, 0.6);
+  }
+
+  th, td {
+    border: 1px solid #2c2c3a;
+    padding: 14px 18px;
+    text-align: center;
+  }
+
+  th {
+    background-color: #1b0029;
+    color: #00ccff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  td {
+    color: #f0f0f0;
+    background-color: #1a1a2e;
+  }
+
+  tr:nth-child(even) td {
+    background-color: #222240;
+  }
+
+  tr:hover td {
+    background-color: #ff00aa;
+    color: #0a0a0f;
+    transition: 0.3s ease;
+  }
+
+  a {
+    color: #00ccff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  a:hover {
+    color: #ff00aa;
+    text-shadow: 0 0 10px #ff00aa;
+  }
+
+  h3 {
+    color: #fff;
+    margin: 20px 0 10px 0;
+  }
+
+  ul {
+    color: #eaeaea;
+    line-height: 1.8;
+    max-width: 750px;
+    margin: 0 auto;
+    padding-left: 20px;
+  }
+</style>
+
+
 </head>
 <header>
     <h1>Shibuya</h1>
