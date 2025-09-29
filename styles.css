@@ -1,36 +1,41 @@
-/* Reset e comportamento global */
+/* 🌍 Reset e comportamento global */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
-  scroll-behavior: smooth; /* Scroll suave */
+  font-family: 'Arial', sans-serif;
+  scroll-behavior: smooth;
 }
 
-/* Cabeçalho fixo */
+body {
+  background-color: #0a0a14; /* fundo escuro elegante */
+  color: #e0e0f5;
+}
+
+/* 🧭 Cabeçalho fixo */
 header {
-  background-color: #811eae;
-  color: white;
+  background: linear-gradient(90deg, #3a0ca3, #7209b7);
+  color: #fff;
   text-align: center;
   padding: 20px;
   position: sticky;
   top: 0;
   z-index: 10;
+  box-shadow: 0 0 15px rgba(255, 0, 255, 0.3);
 }
 
 /* 🌄 HERO SECTION */
 .hero {
   position: relative;
   height: 100vh;
-  background-image: url('images/hero.jpg'); /* Substitui por tua imagem */
+  background-image: url('images/hero.jpg');
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  color: white;
+  color: #fff;
 }
 
 /* Menu dentro da hero */
@@ -47,130 +52,130 @@ header {
 }
 
 .menu a {
-  color: white;
+  color: #fff;
   text-decoration: none;
   font-weight: bold;
   background: rgba(0, 0, 0, 0.5);
   padding: 8px 15px;
   border-radius: 20px;
-  transition: background 0.3s;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(255, 0, 255, 0.2);
 }
 
 .menu a:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 0, 255, 0.2);
+  box-shadow: 0 0 15px rgba(255, 0, 255, 0.4);
 }
 
-/* Conteúdo central */
+/* Conteúdo central da hero */
 .hero-content {
   text-align: center;
-  background: rgba(0, 0, 0, 0.5);
-  padding: 30px;
-  border-radius: 12px;
+  background: rgba(10, 10, 20, 0.7);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(255, 0, 255, 0.2);
 }
 
 .hero-content h2 {
   font-size: 3rem;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  text-shadow: 0 0 10px #ff00ff;
 }
 
 .hero-content p {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
+  font-size: 1.4rem;
+  margin-bottom: 25px;
+  color: #cfcff5;
 }
 
 /* Botão call-to-action */
 .cta-btn {
-  display: inline-block;
-  background-color: #ff9800;
+  background: linear-gradient(90deg, #ff00c8, #3a86ff);
   color: white;
   padding: 12px 25px;
   border-radius: 30px;
   text-decoration: none;
   font-weight: bold;
-  transition: background 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 0 15px rgba(255, 0, 255, 0.3);
 }
 
 .cta-btn:hover {
-  background-color: #e68900;
+  transform: translateY(-3px);
+  box-shadow: 0 0 25px rgba(255, 0, 255, 0.5);
 }
 
 /* 🧠 Projetos */
 .projetos {
-  height: 100vh;
-  background: linear-gradient(to bottom right, #ffd1b3, #ffbfa3);
+  min-height: 100vh;
+  background: radial-gradient(circle at top left, #1a1a2e, #0f0f1a);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding-top: 60px;
+  padding: 80px 20px;
   text-align: center;
-  color: #333;
 }
 
 .projetos h2 {
-  font-size: 2rem;
-  margin-bottom: 10px;
+  font-size: 2.2rem;
+  color: #ff00ff;
+  margin-bottom: 15px;
 }
 
 .projetos p {
   font-size: 1.1rem;
-  color: #555;
+  color: #c0c0f0;
   margin-bottom: 40px;
 }
 
-/* Container dos cards */
+/* Cards */
 .cards-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 25px;
   justify-content: center;
 }
 
-/* Cada card individual */
 .card {
-  background-color: #ffb6c1;
-  border-radius: 12px;
-  padding: 20px 30px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  width: 220px;
+  background: rgba(20, 20, 40, 0.9);
+  border-radius: 15px;
+  padding: 25px;
+  width: 240px;
+  box-shadow: 0 0 15px rgba(255, 0, 255, 0.2);
   transition: transform 0.3s, box-shadow 0.3s;
-  text-align: left;
 }
 
 .card h3 {
+  color: #ff00c8;
   margin-bottom: 10px;
-  font-size: 1.2rem;
 }
 
 .card p {
-  margin-bottom: 15px;
-  font-size: 0.95rem;
-  color: #333;
+  color: #d0d0f0;
+  margin-bottom: 20px;
 }
 
-/* Botão/link dentro do card */
 .card a {
-  display: inline-block;
-  background-color: #811eae;
+  background: linear-gradient(90deg, #3a0ca3, #ff00ff);
   color: white;
   text-decoration: none;
   padding: 8px 16px;
   border-radius: 20px;
   font-size: 0.9rem;
-  transition: background-color 0.3s;
+  transition: all 0.3s ease;
 }
 
 .card a:hover {
-  background-color: #5a137e;
+  box-shadow: 0 0 15px rgba(255, 0, 255, 0.4);
 }
 
-/* Efeito hover do card */
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  transform: translateY(-6px);
+  box-shadow: 0 0 25px rgba(255, 0, 255, 0.3);
 }
 
-/* Responsividade */
+/* Responsividade cards */
 @media (max-width: 768px) {
   .card {
     width: 90%;
@@ -178,21 +183,22 @@ header {
 }
 
 /* 📘 Disciplina */
-/* 📘 Secção Disciplina */
 .disciplina {
-  height: 100vh;
-  background-color: #009688;
-  color: white;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #0f0f1a, #1a1a2e);
+  color: #f0f0f5;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px 20px;
+  padding: 60px 20px;
   text-align: center;
 }
 
 .disciplina h2 {
   font-size: 2rem;
+  color: #00ffff;
   margin-bottom: 30px;
+  text-shadow: 0 0 10px #00ffff;
 }
 
 /* Container com texto + imagem */
@@ -204,21 +210,21 @@ header {
   max-width: 1000px;
 }
 
-/* Texto */
 .disciplina .texto {
   flex: 1;
   text-align: left;
+  line-height: 1.7;
 }
 
 .disciplina .texto p {
   margin-bottom: 15px;
-  line-height: 1.6;
+  color: #dcdcf8;
 }
 
 .disciplina ul {
   list-style-type: disc;
   margin-left: 20px;
-  margin-bottom: 15px;
+  color: #b0b0ff;
 }
 
 /* Imagem */
@@ -231,11 +237,11 @@ header {
 .disciplina .imagem img {
   width: 100%;
   max-width: 350px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
 }
 
-/* Responsividade */
+/* Responsividade disciplina */
 @media (max-width: 768px) {
   .disciplina-content {
     flex-direction: column;
@@ -251,11 +257,12 @@ header {
   }
 }
 
-
-/* Rodapé */
+/* ⚫ Rodapé */
 footer {
-  background-color: #333;
-  color: white;
+  background: #111;
+  color: #aaa;
   text-align: center;
-  padding: 15px;
+  padding: 20px;
+  font-size: 0.9rem;
+  border-top: 1px solid rgba(255, 0, 255, 0.3);
 }
