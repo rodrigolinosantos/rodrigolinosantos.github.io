@@ -2,81 +2,207 @@
 <html lang="pt">
 
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="styles.css">
-    <title>Multimedia</title>
-    <style>
-        .fotografias {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
+  <meta charset="UTF-8">
+  <title>Multimedia</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* --- Cada secção ocupa o ecrã inteiro --- */
+    section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 20px;
+    }
 
-        .fotografias img {
-            width: 150px;
-            border-radius: 20px;
-        }
-    </style>
+    /* 📸 Fotografias */
+    .fotografias {
+      background-color: #1a1a2e;
+    }
+
+    .fotografias h3 {
+      color: #00ccff;
+      margin-bottom: 30px;
+      text-shadow: 0 0 10px rgba(0, 204, 255, 0.6);
+    }
+
+    .fotografias div {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      max-width: 900px;
+    }
+
+    .fotografias img {
+      width: 180px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(255, 0, 170, 0.3);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .fotografias img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #ff00aa;
+    }
+
+    /* 🎥 Vídeo */
+    .video {
+      background-color: #141424;
+    }
+
+    .video h3 {
+      color: #ff00aa;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px rgba(255, 0, 170, 0.6);
+    }
+
+    .video iframe {
+      width: 80%;
+      max-width: 700px;
+      height: 400px;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 204, 255, 0.3);
+    }
+
+    /* 🏙️ FOTO EMBLEMÁTICA (hero multimédia) */
+    .foto-emblematica {
+      width: 100%;
+      height: 100vh; /* ocupa o ecrã inteiro */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #000;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .foto-emblematica img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.9;
+    }
+
+    .foto-emblematica h3 {
+      position: absolute;
+      color: #fff;
+      font-size: 2.5rem;
+      text-shadow: 0 0 15px rgba(255, 0, 170, 0.8), 0 0 25px rgba(0, 204, 255, 0.8);
+    }
+
+    /* ✍️ Poesia */
+    .poesia {
+      background-color: #0a0a0f;
+    }
+
+    .poesia h3 {
+      color: #00ccff;
+      margin-bottom: 25px;
+      text-shadow: 0 0 10px rgba(0, 204, 255, 0.6);
+    }
+
+    .poesia div p {
+      margin: 8px 0;
+      font-size: 1.2rem;
+      color: #f0f0f0;
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
+    }
+
+    /* 📱 Responsividade */
+    @media (max-width: 600px) {
+      .fotografias img {
+        width: 45%;
+      }
+
+      .video iframe {
+        width: 100%;
+        height: 250px;
+      }
+
+      .foto-emblematica h3 {
+        font-size: 1.8rem;
+        text-align: center;
+        padding: 0 20px;
+      }
+
+      .poesia div p {
+        font-size: 1rem;
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <header>
-        <h1>Shibuya</h1>
-    </header>
+  <header>
+    <h1>Shibuya</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="local.html">Localização</a>
+        <a href="multimedia.html">Multimedia</a>
+        <a href="info.html">Informação</a>
+      </nav>
+  </header>
 
-    <main>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="local.html">Localização</a>
-            <a href="multimedia.html">Multimedia</a>
-            <a href="info.html">Informação</a>
-        </nav>
+  <main>
+  <h2>Multimedia</h2>
+  <p>
+    <a href="#fotografias">Fotografias</a>
+    <a href="#video">Vídeo</a>
+    <a href="#poesia">Poesia</a>
+  </p>
+</main>
 
-        <h2>Multimedia</h2>
-        <p>
-            <a href="#fotografias">Fotografias</a>
-            <a href="#video">Vídeo</a>
-            <a href="#poesia">Poesia</a>
-        </p>
-        <p>Nesta página encontra conteúdos multimédia</p>
+<section class="foto-emblematica">
+  <img src="images/shibuya-banner.jpeg" alt="Shibuya à noite">
+  <h3>Shibuya — Coração Pulsante de Tóquio</h3>
+</section>
 
-        <section>
-            <h3>Fotografias</h3>
-            <div class="fotografias">
-                <img src="images/foto1.jpeg" alt="Foto 1">
-                <img src="images/foto2.jpeg" alt="Foto 2">
-                <img src="images/foto3.jpeg" alt="Foto 3">
-                <img src="images/foto4.jpeg" alt="Foto 4">
-                <img src="images/foto5.jpeg" alt="Foto 5">
-                <img src="images/foto6.jpeg" alt="Foto 6">
-                <img src="images/foto7.jpeg" alt="Foto 7">
-                <img src="images/foto8.jpeg" alt="Foto 8">
-            </div>
-        </section>
+<main>
 
-        <section>
-            <h3>Vídeo</h3>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/0nTO4zSEpOs?si=RKavNwSgPuvFwynW"
-                title="YouTube video player" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <!-- 📸 Fotografias -->
+    <section class="fotografias" id="fotografias">
+      <h3>Fotografias</h3>
+      <div>
+        <img src="images/foto1.jpeg" alt="Foto 1">
+        <img src="images/foto2.jpeg" alt="Foto 2">
+        <img src="images/foto3.jpeg" alt="Foto 3">
+        <img src="images/foto4.jpeg" alt="Foto 4">
+        <img src="images/foto5.jpeg" alt="Foto 5">
+        <img src="images/foto6.jpeg" alt="Foto 6">
+        <img src="images/foto7.jpeg" alt="Foto 7">
+        <img src="images/foto8.jpeg" alt="Foto 8">
+      </div>
+    </section>
 
-        </section>
+    <!-- 🎬 Vídeo -->
+    <section class="video" id="video">
+      <h3>Vídeo</h3>
+      <iframe src="https://www.youtube.com/embed/0nTO4zSEpOs?si=RKavNwSgPuvFwynW"
+        title="YouTube video player" allowfullscreen></iframe>
+    </section>
 
-        <section>
-            <h3>Poesia</h3>
-            <div>
-                <p>Shibuya desperta, luzes em multidão,</p>
-                <p>Ruas que dançam num eterno turbilhão.</p>
-                <p>Cruza-se a vida, corre o coração,</p>
-                <p>No cruzamento nasce uma canção.</p>
-                <p>Neon e silêncio, contraste a brilhar,</p>
-                <p>Histórias que o tempo não vai apagar.</p>
-                <p>Shibuya é alma, é voz a vibrar.</p>
-            </div>
-        </section>
-    </main>
+    <!-- 📝 Poesia -->
+    <section class="poesia" id="poesia">
+      <h3>Poesia</h3>
+      <div>
+        <p>Shibuya desperta, luzes em multidão,</p>
+        <p>Ruas que dançam num eterno turbilhão.</p>
+        <p>Cruza-se a vida, corre o coração,</p>
+        <p>No cruzamento nasce uma canção.</p>
+        <p>Neon e silêncio, contraste a brilhar,</p>
+        <p>Histórias que o tempo não vai apagar.</p>
+        <p>Shibuya é alma, é voz a vibrar.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>DIW 2025</p>
+  </footer>
 </body>
 
 </html>

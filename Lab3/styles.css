@@ -124,33 +124,43 @@ footer {
 /* --- LOCALIZAÇÃO --- */
 .local-container {
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  flex-direction: column; /* imagem em cima */
   gap: 30px;
-  flex-wrap: wrap; /* caso a tela fique menor */
   margin-top: 30px;
-  background-color: #141424;
   padding: 30px;
+  background-color: #141424;
   border-radius: 12px;
   box-shadow: 0 0 20px rgba(255, 0, 170, 0.15);
 }
 
-.local-texto {
-  flex: 1 1 300px;
-  color: #f0f0f0;
-  line-height: 1.6;
-}
-
 .local-img {
   width: 100%;
-  max-width: 500px;
   border-radius: 10px;
-  margin-bottom: 20px;
   box-shadow: 0 0 10px rgba(255, 0, 170, 0.3);
 }
 
-.local-mapa {
-  flex: 1 1 300px;
+/* Container flex para texto e mapa */
+.local-content {
+  display: flex;
+  flex-direction: row; /* texto e mapa lado a lado no PC */
+  gap: 30px;
+  justify-content: space-between;
+}
+
+.local-texto {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertical */
+  align-items: center;     /* 🔹 horizontal */
+  gap: 20px;
+  color: #f0f0f0;
+  text-align: center;      /* centraliza o texto dentro da coluna */
+}
+
+/* Texto e mapa */
+.local-texto, .local-mapa {
+  flex: 1;
 }
 
 .local-mapa iframe {
@@ -161,21 +171,164 @@ footer {
   box-shadow: 0 0 10px rgba(0, 204, 255, 0.3);
 }
 
-/* --- RESPONSIVIDADE --- */
-@media (max-width: 700px) {
-  .local-container {
-    flex-direction: column;
+/* Responsividade */
+@media (max-width: 768px) {
+  .local-content {
+    flex-direction: column; /* texto em cima do mapa no mobile */
     align-items: center;
     text-align: center;
   }
 
-  .local-texto, 
-  .local-mapa {
-    width: 100%;
+  .local-mapa iframe {
+    height: 250px;
+  }
+}
+
+/* --- MULTIMÉDIA --- */
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* ocupa o ecrã */
+  padding: 40px 20px;
+  border-radius: 12px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+/* 🎨 Diferenciação de cores */
+section.fotografias {
+  background-color: #1b0029; /* roxo escuro */
+  box-shadow: 0 0 20px rgba(255, 0, 170, 0.15);
+}
+
+section.video {
+  background-color: #0a0a1f; /* azul escuro */
+  box-shadow: 0 0 20px rgba(0, 204, 255, 0.2);
+}
+
+section.poesia {
+  background-color: #0f0f1a; /* preto azulado */
+  box-shadow: 0 0 20px rgba(204, 0, 255, 0.2);
+}
+
+/* 📸 Galeria */
+.fotografias div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  max-height: 130px;        /* 🔹 altura aproximada da primeira linha */
+  overflow: hidden;         /* 🔹 esconde as fotos da segunda linha */
+  transition: max-height 0.8s ease; /* 🔹 transição suave */
+}
+
+.fotografias img {
+  width: 180px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(255, 0, 170, 0.3);
+  transition: width 0.5s, box-shadow 0.5s; /* 🔹 transição suave da largura e sombra */
+}
+
+.fotografias div:hover {
+  max-height: 1000px; 
+}
+
+/* 🎥 Vídeo */
+.video iframe {
+  width: 80%;
+  max-width: 700px;
+  height: 400px;
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 0 20px rgba(0, 204, 255, 0.4);
+  margin-top: 20px;
+}
+
+/* 📝 Poesia */
+.poesia div {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(204, 0, 255, 0.3);
+  line-height: 1.8;
+  font-size: 1.2rem;
+  width: 80%;
+  max-width: 700px;
+}
+
+/* 🔤 Títulos */
+section h3 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px rgba(255, 0, 170, 0.6);
+}
+
+section.video h3 {
+  color: #00ccff;
+  text-shadow: 0 0 10px rgba(0, 204, 255, 0.6);
+}
+
+section.poesia h3 {
+  color: #cc66ff;
+  text-shadow: 0 0 10px rgba(204, 102, 255, 0.6);
+}
+
+/* 📱 Responsividade */
+@media (max-width: 600px) {
+  .fotografias img {
+    width: 45%;
   }
 
-  .local-img {
-    max-width: 100%;
+  .video iframe {
+    width: 100%;
+    height: 250px;
+  }
+
+  .poesia div {
+    width: 95%;
+    font-size: 1rem;
+    padding: 20px;
+  }
+}
+
+/* --- FOTO EMBLEMÁTICA --- */
+.foto-emblematica {
+  position: relative;
+  width: 100%;
+  height: 60vh; /* altura ajustável */
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.foto-emblematica img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* cobre toda a área sem distorcer */
+  display: block;
+}
+
+.foto-emblematica h3 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 5vw; /* 🔹 tamanho adaptável ao ecrã */
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+  margin: 0;
+}
+
+/* 📱 Responsividade extra */
+@media (max-width: 600px) {
+  .foto-emblematica {
+    height: 40vh;
+  }
+  .foto-emblematica h3 {
+    font-size: 8vw;
   }
 }
 
