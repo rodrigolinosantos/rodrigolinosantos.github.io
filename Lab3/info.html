@@ -2,166 +2,259 @@
 <html lang="pt">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Informação</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-  main {
-    padding: 40px 30px;
-    margin: 40px auto;
-    width: 85%;
-    max-width: 900px;
-    background-color: #0f0f1a;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(255, 0, 170, 0.15);
-  }
+  <meta charset="UTF-8">
+  <title>Informação</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* --- Layout Grid --- */
+    main.info-grid {
+      display: grid;
+      grid-template-columns: 1fr 3fr;
+      /* coluna da esquerda menor, tabela maior à direita */
+      grid-template-rows: auto auto;
+      /* primeira linha: tabela + extra, segunda linha: curiosidades */
+      gap: 15px;
+      padding: 20px;
+      margin: 20px auto;
+      width: 90%;
+      max-width: 1000px;
+      background-color: #0f0f1a;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(255, 0, 170, 0.15);
+    }
 
-  h2 {
-    color: #00ccff;
-    margin-bottom: 15px;
-    text-align: center;
-  }
+    /* Container extra */
+    .info-extra {
+      grid-column: 1 / 2;
+      /* esquerda da primeira linha */
+      grid-row: 1 / 2;
+      padding: 15px;
+      text-align: center;
+    }
 
-  p {
-    text-align: center;
-    margin-bottom: 30px;
-    line-height: 1.6;
-    color: #e6e6e6;
-  }
+    /* Tabela principal */
+    .info-tabela {
+      grid-column: 2 / 3;
+      /* direita da primeira linha */
+      grid-row: 1 / 2;
+      padding: 15px;
+    }
 
-  table {
-    width: 80%;
-    border-collapse: collapse;
-    margin: 0 auto 40px auto; /* espaçamento inferior */
-    font-family: Arial, sans-serif;
-    box-shadow: 0 0 20px rgba(255, 0, 170, 0.2);
+
+    /* Container curiosidades */
+    .info-curiosidades {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
     background-color: #141424;
     border-radius: 10px;
-    overflow: hidden;
-  }
+    box-shadow: 0 0 15px rgba(255, 0, 170, 0.2);
+    padding: 8px 12px;   /* padding menor */
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+    max-height: 250px;   /* limita altura do bloco */
+    overflow-y: auto;    /* adiciona scroll se passar do limite */
+}
 
-  caption {
-    font-size: 1.5em;
-    margin-bottom: 15px;
-    font-weight: bold;
-    color: #ff00aa;
-    text-shadow: 0 0 8px rgba(255, 0, 170, 0.6);
-  }
+    /* Lista interna mais compacta */
+    .info-curiosidades ul {
+      margin: 0;
+      padding-left: 15px;
+      line-height: 1.4;
+      font-size: 0.9rem;
+    }
 
-  th, td {
-    border: 1px solid #2c2c3a;
-    padding: 14px 18px;
-    text-align: center;
-  }
-
-  th {
-    background-color: #1b0029;
-    color: #00ccff;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  td {
-    color: #f0f0f0;
-    background-color: #1a1a2e;
-  }
-
-  tr:nth-child(even) td {
-    background-color: #222240;
-  }
-
-  tr:hover td {
-    background-color: #ff00aa;
-    color: #0a0a0f;
-    transition: 0.3s ease;
-  }
-
-  a {
-    color: #00ccff;
-    text-decoration: none;
-    font-weight: bold;
-  }
-
-  a:hover {
-    color: #ff00aa;
-    text-shadow: 0 0 10px #ff00aa;
-  }
-
-  h3 {
-    color: #fff;
-    margin: 20px 0 10px 0;
-  }
-
-  ul {
-    color: #eaeaea;
-    line-height: 1.8;
-    max-width: 750px;
-    margin: 0 auto;
-    padding-left: 20px;
-  }
-</style>
+    .info-curiosidades li {
+      margin-bottom: 4px;
+    }
 
 
+    /* Responsividade */
+    @media (max-width: 768px) {
+      main.info-grid {
+        grid-template-columns: 1fr;
+        /* uma coluna só no mobile */
+        grid-template-rows: auto;
+      }
+
+      .info-extra,
+      .info-tabela,
+      .info-curiosidades {
+        grid-column: 1 / 2;
+        /* todos ocupam 100% da largura */
+      }
+    }
+
+
+    /* Títulos */
+    h2,
+    h3 {
+      color: #00ccff;
+      text-shadow: 0 0 10px rgba(0, 204, 255, 0.6);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    h3 {
+      margin-bottom: 15px;
+    }
+
+    p {
+      line-height: 1.6;
+      color: #e6e6e6;
+    }
+
+    ul {
+      color: #eaeaea;
+      line-height: 1.8;
+      padding-left: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: Arial, sans-serif;
+      box-shadow: 0 0 20px rgba(255, 0, 170, 0.2);
+      background-color: #141424;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    caption {
+      font-size: 1.5em;
+      margin-bottom: 15px;
+      font-weight: bold;
+      color: #ff00aa;
+      text-shadow: 0 0 8px rgba(255, 0, 170, 0.6);
+    }
+
+    th,
+    td {
+      border: 1px solid #2c2c3a;
+      padding: 14px 18px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #1b0029;
+      color: #00ccff;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    td {
+      color: #f0f0f0;
+      background-color: #1a1a2e;
+    }
+
+    tr:nth-child(even) td {
+      background-color: #222240;
+    }
+
+    tr:hover td {
+      background-color: #ff00aa;
+      color: #0a0a0f;
+      transition: 0.3s ease;
+    }
+
+    a {
+      color: #00ccff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      color: #ff00aa;
+      text-shadow: 0 0 10px #ff00aa;
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      main.info-grid {
+        grid-template-columns: 1fr;
+        /* uma coluna só no mobile */
+        grid-template-rows: auto;
+        /* altura automática por elemento */
+      }
+
+      .info-tabela,
+      .info-extra,
+      .info-curiosidades {
+        grid-column: 1 / 2;
+      }
+    }
+  </style>
 </head>
-<header>
-    <h1>Shibuya</h1>
-
-    <nav>
-            <a href="index.html">Home</a>
-            <a href="local.html">Localização</a>
-            <a href="multimedia.html">Multimedia</a>
-            <a href="info.html">Informação</a>
-        </nav>
-</header>
 
 <body>
+  <header>
+    <h1>Shibuya</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="local.html">Localização</a>
+      <a href="multimedia.html">Multimedia</a>
+      <a href="info.html">Informação</a>
+    </nav>
+  </header>
 
-    <main>
-        
-        <h2>Informações</h2>
-        <p>A tabela abaixo apresenta informações essenciais sobre Shibuya.</p>
-        <table>
-            <caption>Dados sobre Shibuya</caption>
-            <tr>
-                <th rowspan="2">Demografia</th>
-                <td>População</td>
-                <td>229.000 hab</td>
-            </tr>
-            <tr>
-                <td>Densidade Populacional</td>
-                <td>14.679 hab/km²</td>
-            </tr>
-            <tr>
-                <th rowspan="2">Geografia</th>
-                <td>Área</td>
-                <td>15,11 km²</td>
-            </tr>
-            <tr>
-                <td colspan="2">Localização: Tóquio, Japão</td>
-            </tr>
-            <tr>
-                <th>Website</th>
-                <td colspan="2"><a href="https://www.city.shibuya.tokyo.jp/"
-                        target="_blank">www.city.shibuya.tokyo.jp</a></td>
-            </tr>
-        </table>
-        <h3>Curiosidades sobre Shibuya</h3>
-        <ul>
-            <li>O cruzamento de Shibuya é considerado o mais movimentado do mundo, atravessado por milhares de pessoas a
-                cada sinal verde.</li>
-            <li>A estátua do cão Hachikō, em frente à estação, é um ponto de encontro famoso e símbolo de lealdade.</li>
-            <li>Shibuya é um dos maiores centros da moda jovem japonesa, com lojas e marcas que lançam tendências
-                globais.</li>
-            <li>À noite, as ruas iluminam-se com néons e ecrãs gigantes, criando uma das paisagens urbanas mais icónicas
-                de Tóquio.</li>
-            <li>O bairro mistura tradição e modernidade, com santuários históricos lado a lado com arranha-céus
-                futuristas.</li>
-        </ul>
+  <main class="info-grid">
+    <!-- Container extra à esquerda -->
+    <section class="info-extra">
+      <h3>Conteúdo Extra</h3>
+      <p>Aqui poderá colocar uma imagem, gráfico ou outro destaque visual.</p>
+    </section>
 
-    </main>
-    <footer>
-        <p>DIW 2025</p>
-    </footer>
+    <!-- Tabela principal -->
+    <section class="info-tabela">
+      <h2>Informações</h2>
+      <p>A tabela abaixo apresenta informações essenciais sobre Shibuya.</p>
+      <table>
+        <caption>Dados sobre Shibuya</caption>
+        <tr>
+          <th rowspan="2">Demografia</th>
+          <td>População</td>
+          <td>229.000 hab</td>
+        </tr>
+        <tr>
+          <td>Densidade Populacional</td>
+          <td>14.679 hab/km²</td>
+        </tr>
+        <tr>
+          <th rowspan="2">Geografia</th>
+          <td>Área</td>
+          <td>15,11 km²</td>
+        </tr>
+        <tr>
+          <td colspan="2">Localização: Tóquio, Japão</td>
+        </tr>
+        <tr>
+          <th>Website</th>
+          <td colspan="2"><a href="https://www.city.shibuya.tokyo.jp/" target="_blank">www.city.shibuya.tokyo.jp</a>
+          </td>
+        </tr>
+      </table>
+    </section>
+
+    <!-- Curiosidades -->
+    <section class="info-curiosidades">
+      <h3>Curiosidades sobre Shibuya</h3>
+      <ul>
+        <li>O cruzamento de Shibuya é considerado o mais movimentado do mundo.</li>
+        <li>A estátua do cão Hachikō é um ponto de encontro famoso.</li>
+        <li>Shibuya é um dos maiores centros da moda jovem japonesa.</li>
+        <li>À noite, as ruas iluminam-se com néons e ecrãs gigantes.</li>
+        <li>O bairro mistura tradição e modernidade, com santuários históricos lado a lado com arranha-céus futuristas.
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>DIW 2025</p>
+  </footer>
 </body>
 
 </html>
