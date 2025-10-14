@@ -6,32 +6,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shibuya</title>
   <link rel="stylesheet" href="styles.css">
-  <script src="scripts/main.js"></script>
 </head>
 
 <body>
   <header>
-    <h1>A minha Cidade</h1>
-    <div class="hamburguer">☰</div>
-
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="local.html">Localização</a>
-      <a href="multimedia.html">Multimedia</a>
-      <a href="info.html">Informação</a>
-    </nav>
+    <h1>Esta é uma pagina interativa!</h1>
   </header>
 
   <main>
-    <section>
-      <h2>Home</h2>
-      <p>A minha cidade é muito linda!!!</p>
-    </section>
+    <div>
+      <button onclick="count()">Clique</button>
+      <button ondblclick="count()">Duplo Clique</button>
+      <button onmouseover="count()">Passa o rato</button>
+      <button onmouseout="count()">Tira o rato</button>
+      <button onmousemove="count()">Move o rato</button>
+    </div>>
+
+    <p id="counter">Contador: 0</p>
+
+    <img src="images/java.png" alt="JavaScript" width="100">
   </main>
 
   <footer>
     <p>DIW 2025</p>
   </footer>
+  <script src="scripts/main.js"></script>
 </body>
 
 </html>
