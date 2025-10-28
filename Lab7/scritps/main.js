@@ -1,14 +1,27 @@
-// main.js
-
+// Limpa a chave carrinho antiga e garante produtos-selecionados
 localStorage.removeItem("carrinho");
 if (!localStorage.getItem("produtos-selecionados")) {
   localStorage.setItem("produtos-selecionados", JSON.stringify([]));
 }
 
-// 2️⃣ Quando o DOM estiver pronto, carrega os produtos
+// Função principal para carregar produtos via fetch da API
 document.addEventListener("DOMContentLoaded", function () {
-  carregarProdutos(produtos);
+  fetch("https://deisishop.pythonanywhere.com/products/application/json")
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`Erro na requisição: ${response.statusText}`);
+      }
+      return response.json();
+    })
+    .then(produtos => {
+      carregarProdutos(produtos);
+      atualizaCesto();
+    })
+    .catch(error => {
+      console.error("Erro ao buscar produtos:", error);
+    });
 });
+
 
 /* ==========================================================
    CARREGAR PRODUTOS
@@ -21,7 +34,7 @@ function carregarProdutos(produtos) {
     return;
   }
 
-  container.innerHTML = ""; // Limpa os produtos antigos antes de adicionar
+  container.innerHTML = ""; // Limpa produtos antigos
 
   produtos.forEach((produto) => {
     const artigo = criarProduto(produto);
@@ -30,7 +43,7 @@ function carregarProdutos(produtos) {
 }
 
 /* ==========================================================
-   CRIAR PRODUTO (com botão "+ Adicionar ao cesto")
+   CRIAR PRODUTO (lista principal)
 ========================================================== */
 function criarProduto(produto) {
   const artigo = document.createElement("article");
@@ -48,7 +61,6 @@ function criarProduto(produto) {
   preco.textContent = `Preço: €${produto.price.toFixed(2)}`;
   botao.textContent = "+ Adicionar ao cesto";
 
-  // ➕ Event listener para adicionar o produto ao localStorage
   botao.addEventListener("click", () => {
     adicionarAoCesto(produto);
   });
@@ -58,24 +70,22 @@ function criarProduto(produto) {
 }
 
 /* ==========================================================
-   ADICIONAR AO CESTO (guardar no localStorage)
+   ADICIONAR AO CESTO
 ========================================================== */
 function adicionarAoCesto(produto) {
-  // Buscar a lista atual de produtos selecionados
   let lista = JSON.parse(localStorage.getItem("produtos-selecionados")) || [];
-
-  // Adicionar o novo produto
   lista.push(produto);
-
-  // Atualizar o localStorage
   localStorage.setItem("produtos-selecionados", JSON.stringify(lista));
-
   console.log(`✅ Produto "${produto.title}" adicionado ao cesto!`);
+  atualizaCesto();
 }
 
+/* ==========================================================
+   ATUALIZAR CESTO
+========================================================== */
 function atualizaCesto() {
   const containerCesto = document.getElementById("cesto");
-  containerCesto.innerHTML = ""; // limpa antes de atualizar
+  containerCesto.innerHTML = "";
 
   const lista = JSON.parse(localStorage.getItem("produtos-selecionados")) || [];
 
@@ -86,13 +96,11 @@ function atualizaCesto() {
     return;
   }
 
-  // Percorre cada produto e cria um <article> com botão de remover
   lista.forEach((produto, index) => {
     const artigoCesto = criaProdutoCesto(produto, index);
     containerCesto.appendChild(artigoCesto);
   });
 
-  // Calcular e mostrar preço total
   const total = lista.reduce((soma, p) => soma + p.price, 0);
   const totalElem = document.createElement("p");
   totalElem.textContent = `💰 Total: €${total.toFixed(2)}`;
@@ -114,18 +122,10 @@ function criaProdutoCesto(produto, index) {
   preco.textContent = `€${produto.price.toFixed(2)}`;
   botaoRemover.textContent = "Remover";
 
-  // Event listener para remover produto do cesto
   botaoRemover.addEventListener("click", () => {
-    // 1️⃣ Buscar lista atual
     let lista = JSON.parse(localStorage.getItem("produtos-selecionados")) || [];
-
-    // 2️⃣ Remover o produto usando o índice
     lista.splice(index, 1);
-
-    // 3️⃣ Atualizar localStorage
     localStorage.setItem("produtos-selecionados", JSON.stringify(lista));
-
-    // 4️⃣ Atualizar visualmente o cesto
     atualizaCesto();
   });
 
@@ -137,24 +137,3 @@ function criaProdutoCesto(produto, index) {
 
   return artigo;
 }
-
-/* ==========================================================
-   MODIFICAÇÕES NA FUNÇÃO adicionarAoCesto
-========================================================== */
-function adicionarAoCesto(produto) {
-  let lista = JSON.parse(localStorage.getItem("produtos-selecionados")) || [];
-  lista.push(produto);
-  localStorage.setItem("produtos-selecionados", JSON.stringify(lista));
-  console.log(`✅ Produto "${produto.title}" adicionado ao cesto!`);
-
-  // Atualiza o cesto visualmente
-  atualizaCesto();
-}
-
-/* ==========================================================
-   CHAMAR ATUALIZAÇÃO DO CESTO AO CARREGAR A PÁGINA
-========================================================== */
-document.addEventListener("DOMContentLoaded", function () {
-  carregarProdutos(produtos);
-  atualizaCesto(); // Mostra o cesto ao iniciar
-});
