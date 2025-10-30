@@ -95,7 +95,7 @@ function atualizaCesto() {
   // Calcular e mostrar preço total
   const total = lista.reduce((soma, p) => soma + p.price, 0);
   const totalElem = document.createElement("p");
-  totalElem.textContent = `💰 Total: €${total.toFixed(2)}`;
+  totalElem.textContent = `Total: €${total.toFixed(2)}`;
   totalElem.style.fontWeight = "bold";
   containerCesto.appendChild(totalElem);
 }

@@ -6,11 +6,8 @@ if (!localStorage.getItem("produtos-selecionados")) {
 
 // Função principal para carregar produtos via fetch da API
 document.addEventListener("DOMContentLoaded", function () {
-  fetch("https://deisishop.pythonanywhere.com/products/application/json")
+  fetch("https://deisishop.pythonanywhere.com/products/")
     .then(response => {
-      if (!response.ok) {
-        throw new Error(`Erro na requisição: ${response.statusText}`);
-      }
       return response.json();
     })
     .then(produtos => {
@@ -23,9 +20,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-/* ==========================================================
-   CARREGAR PRODUTOS
-========================================================== */
 function carregarProdutos(produtos) {
   const container = document.getElementById("produtos");
 
@@ -34,17 +28,13 @@ function carregarProdutos(produtos) {
     return;
   }
 
-  container.innerHTML = ""; // Limpa produtos antigos
-
+  container.innerHTML = "";
   produtos.forEach((produto) => {
     const artigo = criarProduto(produto);
     container.appendChild(artigo);
   });
 }
 
-/* ==========================================================
-   CRIAR PRODUTO (lista principal)
-========================================================== */
 function criarProduto(produto) {
   const artigo = document.createElement("article");
 
@@ -69,9 +59,6 @@ function criarProduto(produto) {
   return artigo;
 }
 
-/* ==========================================================
-   ADICIONAR AO CESTO
-========================================================== */
 function adicionarAoCesto(produto) {
   let lista = JSON.parse(localStorage.getItem("produtos-selecionados")) || [];
   lista.push(produto);
@@ -80,9 +67,7 @@ function adicionarAoCesto(produto) {
   atualizaCesto();
 }
 
-/* ==========================================================
-   ATUALIZAR CESTO
-========================================================== */
+
 function atualizaCesto() {
   const containerCesto = document.getElementById("cesto");
   containerCesto.innerHTML = "";
@@ -108,9 +93,6 @@ function atualizaCesto() {
   containerCesto.appendChild(totalElem);
 }
 
-/* ==========================================================
-   CRIAR PRODUTO NO CESTO
-========================================================== */
 function criaProdutoCesto(produto, index) {
   const artigo = document.createElement("article");
 
