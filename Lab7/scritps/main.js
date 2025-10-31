@@ -4,7 +4,6 @@ if (!localStorage.getItem("produtos-selecionados")) {
   localStorage.setItem("produtos-selecionados", JSON.stringify([]));
 }
 
-// Função principal para carregar produtos via fetch da API
 document.addEventListener("DOMContentLoaded", function () {
   fetch("https://deisishop.pythonanywhere.com/products/")
     .then(response => response.json())
@@ -37,7 +36,7 @@ function carregarCategorias(produtos) {
     selectCategoria.appendChild(option);
   });
 
-  // 👇 Adiciona eventos de atualização
+  //Adiciona eventos de atualização
   selectCategoria.addEventListener("change", atualizarProdutosFiltrados);
   selectOrdenar.addEventListener("change", atualizarProdutosFiltrados);
   inputPesquisa.addEventListener("input", atualizarProdutosFiltrados); // 👈 em tempo real
@@ -55,12 +54,10 @@ function atualizarProdutosFiltrados() {
     lista = lista.filter(p => p.category === categoriaSelecionada);
   }
 
-  // Filtro por pesquisa no nome
   if (pesquisa !== "") {
     lista = lista.filter(p => p.title.toLowerCase().includes(pesquisa));
   }
 
-  // Ordenação
   if (ordem === "asc") {
     lista.sort((a, b) => a.price - b.price);
   } else if (ordem === "desc") {
@@ -150,7 +147,6 @@ function atualizaCesto() {
 }
 
 function mostrarFormularioCompra() {
-  // Evita duplicar o formulário
   if (document.getElementById("compra")) return;
 
   const secCompra = document.createElement("section");
@@ -173,7 +169,6 @@ function mostrarFormularioCompra() {
     <div id="resultado-compra"></div>
   `;
 
-  // Insere o formulário logo abaixo do cesto
   const main = document.querySelector("main");
   main.appendChild(secCompra);
 

@@ -17,9 +17,6 @@ h1, h2, h3 {
   color: #222;
 }
 
-/* ==========================================================
-   HEADER
-========================================================== */
 header {
   display: flex;
   justify-content: space-between;
@@ -48,16 +45,12 @@ nav a:hover {
   text-decoration: underline;
 }
 
-/* ==========================================================
-   SEÇÕES
-========================================================== */
 main {
   display: flex;
   gap: 30px;
   flex-wrap: wrap;
 }
 
-/* PRODUTOS */
 #produtos {
   flex: 2;
   display: grid;
@@ -65,7 +58,6 @@ main {
   gap: 20px;
 }
 
-/* CESTO */
 #cesto {
   flex: 1;
   background-color: #fff;
@@ -76,9 +68,6 @@ main {
   overflow-y: auto;
 }
 
-/* ==========================================================
-   ARTIGO DE PRODUTO
-========================================================== */
 #produtos article, #cesto article {
   background-color: #fff;
   border-radius: 12px;
@@ -118,9 +107,6 @@ main {
   margin-bottom: 10px;
 }
 
-/* ==========================================================
-   BOTÕES
-========================================================== */
 button {
   background-color: #0074D9;
   color: #fff;
@@ -136,14 +122,10 @@ button:hover {
   background-color: #005fa3;
 }
 
-/* BOTÃO REMOVER NO CESTO */
 #cesto button {
   margin-top: 8px;
 }
 
-/* ==========================================================
-   TOTAL DO CESTO
-========================================================== */
 #cesto p.total {
   font-size: 1.1rem;
   font-weight: bold;
@@ -152,9 +134,6 @@ button:hover {
   padding-top: 10px;
 }
 
-/* ==========================================================
-   FOOTER
-========================================================== */
 footer {
   margin-top: 40px;
   text-align: center;
@@ -239,7 +218,7 @@ footer {
   border-radius: 8px;
   padding: 6px 10px;
   font-size: 0.9rem;
-  flex: 1; /* ocupa o espaço disponível */
+  flex: 1;
   min-width: 180px;
   outline: none;
   background-color: #f8f8f8;
