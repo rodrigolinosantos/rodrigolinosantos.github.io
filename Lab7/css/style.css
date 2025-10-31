@@ -1,6 +1,4 @@
-/* ==========================================================
-   RESET E BASE
-========================================================== */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -162,4 +160,141 @@ footer {
   text-align: center;
   font-size: 0.9rem;
   color: #777;
+}
+
+
+#filtro-categorias {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #fff;
+  padding: 6px 12px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+#filtro-categorias label {
+  font-weight: bold;
+  color: #0074D9;
+  font-size: 0.9rem;
+}
+
+#filtro-categorias select {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 0.9rem;
+  outline: none;
+  background-color: #f8f8f8;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+#filtro-categorias select:hover {
+  border-color: #0074D9;
+}
+
+#filtro-categorias select:focus {
+  border-color: #0074D9;
+  background-color: #eef6ff;
+}
+
+#filtro-categorias label {
+  font-weight: bold;
+  color: #0074D9;
+  font-size: 0.9rem;
+}
+
+#filtro-categorias select {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 0.9rem;
+  outline: none;
+  background-color: #fff;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+#filtro-categorias select:hover {
+  border-color: #0074D9;
+}
+
+#filtro-categorias select:focus {
+  border-color: #0074D9;
+  background-color: #eef6ff;
+}
+
+#filtro-categorias {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #fff;
+  padding: 10px 16px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  flex-wrap: wrap;
+}
+
+#filtro-categorias input[type="text"] {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 0.9rem;
+  flex: 1; /* ocupa o espaço disponível */
+  min-width: 180px;
+  outline: none;
+  background-color: #f8f8f8;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+#filtro-categorias input[type="text"]:focus {
+  border-color: #0074D9;
+  background-color: #eef6ff;
+}
+
+#filtro-categorias label {
+  font-weight: bold;
+  color: #0074D9;
+  font-size: 0.9rem;
+}
+
+#filtro-categorias select {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 0.9rem;
+  outline: none;
+  background-color: #fff;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+#compra {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  margin-top: 20px;
+}
+
+#compra h2 {
+  color: #0074D9;
+  margin-bottom: 15px;
+}
+
+#compra label {
+  display: block;
+  margin: 8px 0 4px;
+  font-weight: 500;
+}
+
+#compra input[type="text"] {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 8px 10px;
+  width: 100%;
+  max-width: 250px;
+  font-size: 0.9rem;
+}
+
+#compra button {
+  margin-top: 12px;
 }

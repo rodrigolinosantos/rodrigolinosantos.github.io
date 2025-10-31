@@ -17,19 +17,32 @@
                 <li><a href="#cesto">Cesto</a></li>
             </ul>
         </nav>
+
+        <div id="filtro-categorias">
+            <input type="text" id="pesquisa" placeholder="🔍 Procurar produto...">
+
+            <label for="categoria">Categoria:</label>
+            <select id="categoria">
+                <option value="">Todas</option>
+            </select>
+
+            <label for="ordenar">Ordenar:</label>
+            <select id="ordenar">
+                <option value="">Padrão</option>
+                <option value="asc">Preço ↑</option>
+                <option value="desc">Preço ↓</option>
+            </select>
+        </div>
     </header>
 
-    <main>
-        <section id="produtos">
-        </section>
-        <section id="cesto">
+    <<main>
+        <section id="produtos"></section>
+        <section id="cesto"></section>
+        </main>
+        <footer>
+            <p>DIW 2025</p>
+        </footer>
 
-        </section>
-    </main>
-    <footer>
-        <p>DIW 2025</p>
-    </footer>
-    
-    <script src="scritps/produtos.js"></script>
-    <script src="scritps/main.js"></script>
+        <script src="scritps/produtos.js"></script>
+        <script src="scritps/main.js"></script>
 </body>

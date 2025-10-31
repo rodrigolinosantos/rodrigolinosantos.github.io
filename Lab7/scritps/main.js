@@ -7,10 +7,10 @@ if (!localStorage.getItem("produtos-selecionados")) {
 // Função principal para carregar produtos via fetch da API
 document.addEventListener("DOMContentLoaded", function () {
   fetch("https://deisishop.pythonanywhere.com/products/")
-    .then(response => {
-      return response.json();
-    })
+    .then(response => response.json())
     .then(produtos => {
+      window.todosOsProdutos = produtos; // Guardar produtos em memória
+      carregarCategorias(produtos);
       carregarProdutos(produtos);
       atualizaCesto();
     })
@@ -19,6 +19,56 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+function carregarCategorias(produtos) {
+  const selectCategoria = document.getElementById("categoria");
+  const selectOrdenar = document.getElementById("ordenar");
+  const inputPesquisa = document.getElementById("pesquisa");
+
+  if (!selectCategoria || !selectOrdenar || !inputPesquisa) return;
+
+  // Extrai categorias únicas
+  const categorias = [...new Set(produtos.map(p => p.category))];
+
+  // Preenche o select de categorias
+  categorias.forEach(cat => {
+    const option = document.createElement("option");
+    option.value = cat;
+    option.textContent = cat;
+    selectCategoria.appendChild(option);
+  });
+
+  // 👇 Adiciona eventos de atualização
+  selectCategoria.addEventListener("change", atualizarProdutosFiltrados);
+  selectOrdenar.addEventListener("change", atualizarProdutosFiltrados);
+  inputPesquisa.addEventListener("input", atualizarProdutosFiltrados); // 👈 em tempo real
+}
+
+function atualizarProdutosFiltrados() {
+  const categoriaSelecionada = document.getElementById("categoria").value;
+  const ordem = document.getElementById("ordenar").value;
+  const pesquisa = document.getElementById("pesquisa").value.toLowerCase().trim();
+
+  let lista = [...window.todosOsProdutos];
+
+  // Filtro por categoria
+  if (categoriaSelecionada !== "") {
+    lista = lista.filter(p => p.category === categoriaSelecionada);
+  }
+
+  // Filtro por pesquisa no nome
+  if (pesquisa !== "") {
+    lista = lista.filter(p => p.title.toLowerCase().includes(pesquisa));
+  }
+
+  // Ordenação
+  if (ordem === "asc") {
+    lista.sort((a, b) => a.price - b.price);
+  } else if (ordem === "desc") {
+    lista.sort((a, b) => b.price - a.price);
+  }
+
+  carregarProdutos(lista);
+}
 
 function carregarProdutos(produtos) {
   const container = document.getElementById("produtos");
@@ -67,7 +117,6 @@ function adicionarAoCesto(produto) {
   atualizaCesto();
 }
 
-
 function atualizaCesto() {
   const containerCesto = document.getElementById("cesto");
   containerCesto.innerHTML = "";
@@ -88,10 +137,49 @@ function atualizaCesto() {
 
   const total = lista.reduce((soma, p) => soma + p.price, 0);
   const totalElem = document.createElement("p");
+  totalElem.classList.add("total");
   totalElem.textContent = `💰 Total: €${total.toFixed(2)}`;
-  totalElem.style.fontWeight = "bold";
   containerCesto.appendChild(totalElem);
+
+  // 👉 Botão para mostrar a secção de compra
+  const btnFinalizar = document.createElement("button");
+  btnFinalizar.textContent = "🛒 Finalizar Compra";
+  btnFinalizar.style.marginTop = "10px";
+  btnFinalizar.addEventListener("click", mostrarFormularioCompra);
+  containerCesto.appendChild(btnFinalizar);
 }
+
+function mostrarFormularioCompra() {
+  // Evita duplicar o formulário
+  if (document.getElementById("compra")) return;
+
+  const secCompra = document.createElement("section");
+  secCompra.id = "compra";
+  secCompra.innerHTML = `
+    <h2>Finalizar Compra</h2>
+
+    <label for="name">Nome:</label>
+    <input type="text" id="name" required>
+
+    <label>
+      <input type="checkbox" id="student"> Sou estudante
+    </label>
+
+    <label for="coupon">Cupão:</label>
+    <input type="text" id="coupon">
+
+    <button id="comprar">💳 Comprar</button>
+
+    <div id="resultado-compra"></div>
+  `;
+
+  // Insere o formulário logo abaixo do cesto
+  const main = document.querySelector("main");
+  main.appendChild(secCompra);
+
+  document.getElementById("comprar").addEventListener("click", efetuarCompra);
+}
+
 
 function criaProdutoCesto(produto, index) {
   const artigo = document.createElement("article");
@@ -118,4 +206,86 @@ function criaProdutoCesto(produto, index) {
   artigo.style.borderRadius = "5px";
 
   return artigo;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const btnComprar = document.getElementById("comprar");
+  if (btnComprar) {
+    btnComprar.addEventListener("click", efetuarCompra);
+  }
+});
+
+function efetuarCompra() {
+  const lista = JSON.parse(localStorage.getItem("produtos-selecionados")) || [];
+
+  if (lista.length === 0) {
+    alert("❌ O cesto está vazio!");
+    return;
+  }
+
+  const name = document.getElementById("name").value.trim();
+  const student = document.getElementById("student").checked;
+  const coupon = document.getElementById("coupon").value.trim();
+
+  if (!name) {
+    alert("⚠️ Por favor, insere o teu nome antes de finalizar a compra.");
+    return;
+  }
+
+  const produtosIDs = lista.map(p => p.id);
+
+  const dadosCompra = {
+    products: produtosIDs,
+    student: student,
+    coupon: coupon || "",
+    name: name
+  };
+
+  fetch("https://deisishop.pythonanywhere.com/buy/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "accept": "application/json"
+    },
+    body: JSON.stringify(dadosCompra)
+  })
+    .then(async response => {
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw { status: response.status, data };
+      }
+
+      mostrarResultadoCompra(data);
+      localStorage.removeItem("produtos-selecionados");
+      atualizaCesto();
+    })
+    .catch(err => {
+      tratarErroCompra(err);
+    });
+}
+
+function mostrarResultadoCompra(data) {
+  const container = document.getElementById("resultado-compra");
+  container.innerHTML = `
+    <div style="background:#e8f5e9; padding:15px; border-radius:10px; margin-top:10px;">
+      <p><strong>💬 Mensagem:</strong> ${data.message}</p>
+      <p><strong>🏠 Morada:</strong> ${data.address}</p>
+      <p><strong>💰 Total:</strong> €${parseFloat(data.totalCost).toFixed(2)}</p>
+      <p><strong>📦 Referência de pagamento:</strong> ${data.reference}</p>
+    </div>
+  `;
+}
+
+function tratarErroCompra(err) {
+  const container = document.getElementById("resultado-compra");
+  let msg = "❌ Ocorreu um erro ao processar a compra.";
+
+  if (err.data && err.data.detail) msg = err.data.detail;
+
+  container.innerHTML = `
+    <div style="background:#fdecea; padding:15px; border-radius:10px; margin-top:10px; color:#b71c1c;">
+      ${msg}
+    </div>
+  `;
 }
